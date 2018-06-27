@@ -1,0 +1,91 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    background-color: #333;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 7.5% 85% 7.5%;
+}
+
+.img-changer {
+    background: rgba(255, 255, 255, 0);
+    line-height: 100%;
+    height: 100vh;
+    z-index: 2;
+    -webkit-app-region: no-drag;
+}
+
+.img-changer:hover {
+    background: rgba(173, 216, 230, 0.5);
+    transition: background-color 1s ease-out;
+    cursor: pointer;
+}
+
+#current-img {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    max-width: 100%;
+}
+
+.icon-wrapper {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 47.5% 5% 47.5%;
+}
+
+.fa {
+    font-size: 2em;
+    color: crimson;
+}
+
+.icon {
+    text-align: center;
+}
+
+.pusher {
+    height: 100%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.draggable {
+    -webkit-app-region: drag;
+}
+
+/* Buttons */
+
+.mid-container {
+    display: grid;
+    grid-template-rows: 90% 10%;
+    height: 100%;
+}
+
+.settings-div {
+    z-index: 2;
+    margin: 0 auto;
+}
+
+.settingsButton {
+    opacity: 0.5;
+    margin: 0 50px;
+    padding: 15px 40px;
+    color: #fff;
+    background-color: rgba(220, 20, 60, 0.6);
+    /* border: 1px solid rgb(220, 20, 60); */
+    /* border: 1px solid #); */
+    transition: opacity .5s ease-out;
+    cursor: pointer;
+
+    -webkit-app-region: no-drag;
+}
+
+.settingsButton:hover {
+    opacity: 1;
+}
