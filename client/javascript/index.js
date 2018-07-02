@@ -2,11 +2,14 @@ const electron = require("electron");
 const {
     ipcRenderer
 } = electron;
-const wallpaper = require("wallpaper");
 const fs = require('fs');
 const axios = require('axios');
 const Path = require('path');
 const os = require('os');
+const mkdirp = require('mkdirp')
+
+
+
 let maximized = false;
 const last = document.querySelector('#last-div');
 const next = document.querySelector('#next-div');
@@ -16,8 +19,10 @@ const currentImg = document.querySelector('#current-img');
 
 const saveButton = document.querySelector('#save');
 const wpButton = document.querySelector('#wallpaper');
-const path = createPath();
+const exitButton = document.querySelector('#exit');
 
+let folderName = "wpfinder_images";
+const homepath = createPath(os.homedir(), folderName);
 
 currentImg.addEventListener('dblclick', () => {
 
@@ -80,47 +85,86 @@ saveButton.addEventListener('click', () => {
     save();
 })
 
+exitButton.addEventListener('click', () => {
+    ipcRenderer.send('event:quit');
+})
+
 async function setAsWallpaper() {
 
-    await save();
+    await save().then(() => {
+
+        let name = createImageName();
+        let slash = process.platform === 'win32' ? '\\' : '/';
+        let path = homepath + slash + name;
 
 
-    wallpaper.set(path).then(() => {
+        ipcRenderer.send("event:setWallpaper", path);
 
     });
 
 
+    // console.log(path)
+   
+
+
 }
+
 
 
 
 async function save() {
 
+    if (!pathExist(homepath)) {
 
-    const url = currentImg.src;
-    console.log(url)
-    const response = await axios({
-        method: 'GET',
-        url: url,
-        responseType: 'stream'
-    });
+        createFolder(homepath);
+    }
 
-    response.data.pipe(fs.createWriteStream(path));
+    let name = createImageName();
+    let slash = process.platform === 'win32' ? '\\' : '/';
+    const path = homepath + slash + name;
 
-    return new Promise((resolve, reject) => {
-        response.data.on('end', () => {
-            resolve();
-        });
+    const settings = {
+        url: currentImg.src,
+        fileName: name,
+        path: path
+    }
 
-        response.data.on('reject', () => {
-            reject();
-        })
-    });
+    ipcRenderer.send('event:save', settings);
+
+}
+
+ipcRenderer.on('event:save', (image) => {
+
+    console.log('download Done');
+
+});
+
+
+
+
+function createPath(dir, folder) {
+
+    return Path.resolve(dir, folder);
+}
+
+function pathExist(path) {
+
+    return fs.existsSync(path);
 
 
 }
 
-function createPath() {
+async function createFolder(path) {
 
-    return Path.resolve(os.homedir(), 'Wpfinder_images', "1.jpg");
+    await mkdirp(homepath);
+
+}
+
+
+function createImageName() {
+    const url = currentImg.src;
+    const index = url.lastIndexOf('/');
+    const name = url.substring(index + 1, url.length);
+
+    return name;
 }
