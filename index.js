@@ -9,6 +9,7 @@ const {
 } = electron;
 const axios = require('axios');
 const fs = require('fs');
+const request = require('request');
 const wallpaper = require("wallpaper");
 const imgLoader = new ImageLoader();
 const handler = new ImageHandler(imgLoader);
@@ -63,7 +64,6 @@ ipcMain.on('load-ready', () => {
 app.on('ready', createWindow);
 
 ipcMain.on('event:quit', () => {
-
     mainWindow = null;
     app.quit();
 })
@@ -75,25 +75,27 @@ ipcMain.on('event:save', (event, settings) => {
 });
 
 
-ipcMain.on('event:setWallpaper', (event, path) => {
-    setWallpaper(path);
-})
-
-
 async function download(settings) {
-    await axios({
-        method: 'GET',
-        url: settings.url,
-        responseType: 'stream'
-    }).then((res) => {
-        res.data.pipe(fs.createWriteStream(settings.path));
-        console.log("saved to: " + settings.path)
-    });
+
+    const response = await request.get(settings.url)
+        .on('error', (err) => {
+            console.log(err)
+        })
+        .pipe(fs.createWriteStream(settings.path));
+
+        response.on('finish', () => {
+            if (settings.setWP){
+                setWallpaper(settings.path);
+            }
+        })
 
 }
 
-async function setWallpaper(path) {
-    await wallpaper.set(path).then(() => {
+
+function setWallpaper(path) {
+
+    wallpaper.set(path).then(() => {
         console.log("wallpaper set");
     });
+
 }

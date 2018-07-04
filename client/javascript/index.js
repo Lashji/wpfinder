@@ -82,7 +82,7 @@ wpButton.addEventListener('click', () => {
 })
 
 saveButton.addEventListener('click', () => {
-    save();
+    save(false);
 })
 
 exitButton.addEventListener('click', () => {
@@ -91,20 +91,16 @@ exitButton.addEventListener('click', () => {
 
 async function setAsWallpaper() {
 
-    await save().then(() => {
-
-        let name = createImageName();
-        let slash = process.platform === 'win32' ? '\\' : '/';
-        let path = homepath + slash + name;
+    await save(true);
 
 
-        ipcRenderer.send("event:setWallpaper", path);
+    // let name = createImageName();
+    // let slash = process.platform === 'win32' ? '\\' : '/';
+    // let path = homepath + slash + name;
 
-    });
 
+    // ipcRenderer.send("event:setWallpaper", path);
 
-    // console.log(path)
-   
 
 
 }
@@ -112,7 +108,7 @@ async function setAsWallpaper() {
 
 
 
-async function save() {
+async function save(setAsWP) {
 
     if (!pathExist(homepath)) {
 
@@ -126,8 +122,10 @@ async function save() {
     const settings = {
         url: currentImg.src,
         fileName: name,
-        path: path
+        path: path,
+        setWP: setAsWP
     }
+
 
     ipcRenderer.send('event:save', settings);
 

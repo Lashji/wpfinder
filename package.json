@@ -5,12 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.18.0",
-    "electron": "^2.0.2",
+    "electron": "^2.0.3",
     "electron-rebuild": "^1.7.3",
-    "jquery": "^3.3.1",
     "request": "^2.87.0",
-    "wallpaper": "^3.0.0",
-    "webworker-threads": "^0.7.15"
+    "wallpaper": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {

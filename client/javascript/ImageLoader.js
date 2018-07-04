@@ -1,6 +1,6 @@
 const request = require("request");
 const axios = require("axios");
-const Worker = require('webworker-threads').Worker;
+// const Worker = require('webworker-threads').Worker;
 
 
 class ImageLoader {
