@@ -1,4 +1,6 @@
 const electron = require("electron");
+const Settings = require('./js/settings.js');
+const settings = new Settings(__dirname + "/config.json");
 const ImageHandler = require("./js/ImageHandler.js");
 const ImageLoader = require("./js/ImageLoader.js");
 
@@ -7,11 +9,12 @@ const {
     BrowserWindow,
     ipcMain
 } = electron;
+
 const fs = require('fs');
 const request = require('request');
 const wallpaper = require("wallpaper");
-const imgLoader = new ImageLoader();
-const handler = new ImageHandler(imgLoader);
+const imgLoader = new ImageLoader(settings);
+const handler = new ImageHandler(imgLoader, settings);
 let mainWindow;
 
 
@@ -23,9 +26,9 @@ async function createWindow() {
         minHeight: 788,
         minWidth: 1400,
         show: false,
-        frame: false,
+        frame: true,
     });
-
+    // mainWindow.setMenu(null)
     mainWindow.loadURL(`file://${__dirname}/client/main.html`);
 
 

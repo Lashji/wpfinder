@@ -5,8 +5,9 @@ const axios = require("axios");
 
 class ImageLoader {
 
-    constructor() {
-        this.images = []
+    constructor(settings) {
+        this.settings = settings;
+        this.images = [];
         this.ready = false;
         this.filter = true;
     }

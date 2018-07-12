@@ -5,8 +5,8 @@ const {
 const fs = require('fs');
 const Path = require('path');
 const os = require('os');
-const mkdirp = require('mkdirp')
-
+const mkdirp = require('mkdirp');
+// const buttons  = require('./buttons');
 
 
 let maximized = false;
@@ -91,16 +91,6 @@ exitButton.addEventListener('click', () => {
 async function setAsWallpaper() {
 
     await save(true);
-
-
-    // let name = createImageName();
-    // let slash = process.platform === 'win32' ? '\\' : '/';
-    // let path = homepath + slash + name;
-
-
-    // ipcRenderer.send("event:setWallpaper", path);
-
-
 
 }
 

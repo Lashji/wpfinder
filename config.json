@@ -1,0 +1,8 @@
+{
+    "randomize": false,
+    "save_path": "path",
+    "filter": true,
+    "albums": [
+        "https://api.imgur.com/3/album/rMPdm"
+    ]
+}

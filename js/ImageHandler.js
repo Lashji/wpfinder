@@ -7,7 +7,9 @@ const {
 class ImageHandler {
 
 
-    constructor(imgLoader) {
+    constructor(imgLoader, settings) {
+        this.settings = settings;
+        console.log(this.settings)
         this.loader = imgLoader;
         this.index = 0;
         this.images = [];
