@@ -56,7 +56,7 @@ class ImageLoader {
 
                 });
 
-                if (this.init){
+                if (this.init) {
                     this.init = false;
                     mainWindow.webContents.send('load-ready');
                 }
@@ -65,8 +65,10 @@ class ImageLoader {
                 console.log(err);
 
             });
-        });
+        })
+        mainWindow.webContents.send('done');
 
+        console.log(this.images.length)
 
     }
 

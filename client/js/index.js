@@ -64,6 +64,9 @@ ipcRenderer.on("event:init", (event, img) => {
     draw(img);
 
 });
+ipcRenderer.on('done', (event) => {
+    ipcRenderer.send('done');
+})
 
 ipcRenderer.on('load-ready', (event) => {
 

@@ -60,7 +60,7 @@ ipcMain.on('event:unmaximize', (event) => {
 ipcMain.on('load-ready', () => {
     console.log(settings.randomize)
 
-    if (settings.randomize){
+    if (settings.randomize) {
         handler.shuffle();
     }
 
@@ -81,7 +81,13 @@ ipcMain.on('event:save', (event, settings) => {
     download(settings);
 
 });
+ipcMain.on('done', () => {
 
+    if (settings.randomize) {
+        handler.shuffle();
+    }
+
+})
 
 async function download(settings) {
 
@@ -91,11 +97,11 @@ async function download(settings) {
         })
         .pipe(fs.createWriteStream(settings.path));
 
-        response.on('finish', () => {
-            if (settings.setWP){
-                setWallpaper(settings.path);
-            }
-        })
+    response.on('finish', () => {
+        if (settings.setWP) {
+            setWallpaper(settings.path);
+        }
+    })
 
 }
 
