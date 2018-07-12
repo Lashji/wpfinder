@@ -3,7 +3,6 @@ const {
     ipcRenderer
 } = electron;
 const fs = require('fs');
-const axios = require('axios');
 const Path = require('path');
 const os = require('os');
 const mkdirp = require('mkdirp')

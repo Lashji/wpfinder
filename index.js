@@ -26,7 +26,7 @@ async function createWindow() {
         frame: false,
     });
 
-    mainWindow.loadURL(`file://${__dirname}/main.html`);
+    mainWindow.loadURL(`file://${__dirname}/client/main.html`);
 
 
     mainWindow.once('ready-to-show', () => {
