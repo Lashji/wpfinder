@@ -9,11 +9,12 @@ class ImageHandler {
 
     constructor(imgLoader, settings) {
         this.settings = settings;
-        console.log(this.settings)
         this.loader = imgLoader;
         this.index = 0;
         this.images = [];
         this.firstImage = true;
+
+
     }
 
 
@@ -22,6 +23,7 @@ class ImageHandler {
 
         this.loader.load(mainWindow)
         this.images = await this.loader.getImages();
+
         return this.images;
     }
 
@@ -72,6 +74,25 @@ class ImageHandler {
         this.images = tmp;
     }
 
+    shuffle() {
+
+
+        let counter = this.images.length;
+        // While there are elements in the array
+        while (counter > 0) {
+            // Pick a random index
+            let index = Math.floor(Math.random() * counter);
+
+            // Decrease counter by 1
+            counter--;
+
+            // And swap the last element with it
+            let temp = this.images[counter];
+            this.images[counter] = this.images[index];
+            this.images[index] = temp;
+        }
+
+    }
 
 }
 

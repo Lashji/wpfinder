@@ -26,7 +26,7 @@ async function createWindow() {
         minHeight: 788,
         minWidth: 1400,
         show: false,
-        frame: true,
+        frame: false,
     });
     // mainWindow.setMenu(null)
     mainWindow.loadURL(`file://${__dirname}/client/main.html`);
@@ -58,6 +58,12 @@ ipcMain.on('event:unmaximize', (event) => {
 });
 
 ipcMain.on('load-ready', () => {
+    console.log(settings.randomize)
+
+    if (settings.randomize){
+        handler.shuffle();
+    }
+
     let img = handler.getNextImage();
     mainWindow.webContents.send("event:init", img);
     mainWindow.show();

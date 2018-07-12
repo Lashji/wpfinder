@@ -16,6 +16,9 @@ class Settings {
         return JSON.parse(fs.readFileSync(config, 'utf8'));
     }
 
+    writeConfig(config) {
+        
+    }
 
 }
 

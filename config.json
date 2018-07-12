@@ -1,8 +1,12 @@
 {
-    "randomize": false,
+    "randomize": true,
     "save_path": "path",
     "filter": true,
+    "extensions" : [
+        ".jpg"
+    ],
     "albums": [
-        "https://api.imgur.com/3/album/rMPdm"
+        "https://api.imgur.com/3/album/rMPdm",
+        "https://api.imgur.com/3/album/abaz1"
     ]
 }

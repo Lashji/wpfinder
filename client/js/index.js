@@ -6,8 +6,8 @@ const fs = require('fs');
 const Path = require('path');
 const os = require('os');
 const mkdirp = require('mkdirp');
-// const buttons  = require('./buttons');
-
+// const buttons  = require('./buttons.js');
+// const utils = require('./utils');
 
 let maximized = false;
 const last = document.querySelector('#last-div');
@@ -20,7 +20,7 @@ const saveButton = document.querySelector('#save');
 const wpButton = document.querySelector('#wallpaper');
 const exitButton = document.querySelector('#exit');
 
-let folderName = "wpfinder_images";
+let folderName = "wallpapers";
 const homepath = createPath(os.homedir(), folderName);
 
 currentImg.addEventListener('dblclick', () => {
