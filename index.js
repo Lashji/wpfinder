@@ -1,13 +1,12 @@
 const electron = require("electron");
-const ImageHandler = require("./client/javascript/ImageHandler");
-const ImageLoader = require("./client/javascript/ImageLoader");
+const ImageHandler = require("./js/ImageHandler.js");
+const ImageLoader = require("./js/ImageLoader.js");
 
 const {
     app,
     BrowserWindow,
     ipcMain
 } = electron;
-const axios = require('axios');
 const fs = require('fs');
 const request = require('request');
 const wallpaper = require("wallpaper");
