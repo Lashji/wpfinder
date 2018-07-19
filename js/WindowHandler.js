@@ -37,17 +37,18 @@ class WindowHandler {
     }
 
     createSettingsWindow() {
-        menu_conf = {
+        const menu_conf = {
             height: 300,
             width: 300,
             minHeight: 300,
             minWidth: 480,
             show: true,
             frame: false,
+            resizable: false
         }
 
-        settingsWindow = new SettingsMenu(menu_conf, settings);
-        settingsWindow.loadURL(`file://${__dirname}/client/settings.html`);
+        const settingsWindow = new SettingsMenu(menu_conf, this.settings);
+        settingsWindow.loadURL(`file://${__dirname}/../client/settings.html`);
 
         this.windows.push({
             name: "settingswindow",
@@ -58,10 +59,14 @@ class WindowHandler {
     getWindow(window) {
 
         for (var i = 0; i < this.windows.length; i++) {
-            if ( this.windows[i].name === window) {
+            if (this.windows[i].name === window) {
                 return this.windows[i].window;
             }
         }
+    }
+
+    getWindows() {
+        return this.windows;
     }
 }
 

@@ -8,6 +8,8 @@ class Utils {
 
     exit_app(app, windows) {
         windows.forEach(w => {
+
+            console.log(w)
             w = null;
         })
         app.quit();

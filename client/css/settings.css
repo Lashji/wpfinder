@@ -1,5 +1,99 @@
-html, body {
+html,
+body {
     /* min-width: 300px;
     min-height: 300px; */
+    margin: 0;
+    padding: 0;
     background-color: #eeeeee;
+}
+
+.settings-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 12.5% 87.5%;
+}
+
+#sidebar {
+    display: grid;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    background-color: #34487B;
+    color: #efefef;
+}
+
+.sidebar-item {
+    list-style-type: none;
+    padding: 10px;
+    transition: background-color .5s ease-out, color .5s ease-out;
+    /* transition: color 1s ease-out; */
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    color: #34487B;
+    background-color: #efefef;
+    -moz-box-shadow: inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
+}
+
+#main {
+    display: grid;
+    grid-template-rows: 90% 10%;
+}
+
+#bottom {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+}
+
+.buttons {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.buttons:hover {
+    cursor: pointer;
+}
+
+#cancel {
+    background-color: #34487B;
+    color: #efefef;
+}
+
+#cancel:hover {
+    background-color: #efefef;
+    color: #34487B;
+}
+
+#apply {
+    background-color: #1C5E2C;
+    color: #efefef;
+}
+
+#apply:hover {
+    background-color: #34487B;
+    color: #efefef;
+}
+
+.sidebar-link {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.sidebar-icon {
+    font-size: 2em;
+    z-index: 2;
+}
+
+/* DRAGS */
+
+.draggable {
+    -webkit-app-region: drag;
+}
+
+.buttons,
+.sidebar-item {
+    -webkit-app-region: no-drag;
 }

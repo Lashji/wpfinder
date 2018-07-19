@@ -25,13 +25,12 @@ let settingsWindow;
 ipcMain.on('load-ready', () => {
 
     mainWindow = windowhandler.getWindow("mainwindow");
-    const events = new EventHandler(mainWindow, handler, utils, settings);
+    const events = new EventHandler(mainWindow, handler, utils, settings, windowhandler);
     events.init();
 
     if (settings.randomize) {
         handler.shuffle();
     }
-
 
     let img = handler.getNextImage();
     mainWindow.webContents.send("event:init", img);
@@ -40,6 +39,4 @@ ipcMain.on('load-ready', () => {
 
 app.on('ready', () => {
     mainWindow = windowhandler.createMainWindow();
-
-
 });
