@@ -13,11 +13,10 @@ const {
     ipcMain
 } = electron;
 
-const fs = require('fs');
-const request = require('request');
-const wallpaper = require("wallpaper");
+
 const imgLoader = new ImageLoader(settings);
 const handler = new ImageHandler(imgLoader, settings);
+const utils = new Utils();
 let mainWindow;
 let settingsWindow;
 
@@ -81,7 +80,7 @@ ipcMain.on('event:quit', () => {
 
 ipcMain.on('event:save', (event, settings) => {
 
-    download(settings);
+    utils.download(settings);
 
 });
 
@@ -104,7 +103,9 @@ ipcMain.on('event:settingsMenu', (event) => {
 });
 
 ipcMain.on('event:exit_without_saving', (event) => {
-    utils.exit_app();
+
+    const windows = [mainWindow, settingsWindow]
+    utils.exit_app(app, windows);
 })
 
 ipcMain.on('done', () => {
@@ -115,27 +116,3 @@ ipcMain.on('done', () => {
 
 })
 
-async function download(settings) {
-
-    const response = await request.get(settings.url)
-        .on('error', (err) => {
-            console.log(err)
-        })
-        .pipe(fs.createWriteStream(settings.path));
-
-    response.on('finish', () => {
-        if (settings.setWP) {
-            setWallpaper(settings.path);
-        }
-    })
-
-}
-
-
-function setWallpaper(path) {
-
-    wallpaper.set(path).then(() => {
-        console.log("wallpaper set");
-    });
-
-}
