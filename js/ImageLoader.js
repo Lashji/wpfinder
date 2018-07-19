@@ -68,7 +68,7 @@ class ImageLoader {
         })
         mainWindow.webContents.send('done');
 
-        console.log(this.images.length)
+        // console.log(this.images.length)
 
     }
 
