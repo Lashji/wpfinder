@@ -3,6 +3,9 @@ const Settings = require('./js/settings.js');
 const settings = new Settings(__dirname + "/config.json");
 const ImageHandler = require("./js/ImageHandler.js");
 const ImageLoader = require("./js/ImageLoader.js");
+const SettingsMenu = require("./js/SettingsMenu.js");
+const Utils = require('./js/Utils.js');
+
 
 const {
     app,
@@ -16,7 +19,7 @@ const wallpaper = require("wallpaper");
 const imgLoader = new ImageLoader(settings);
 const handler = new ImageHandler(imgLoader, settings);
 let mainWindow;
-
+let settingsWindow;
 
 async function createWindow() {
 
@@ -81,6 +84,29 @@ ipcMain.on('event:save', (event, settings) => {
     download(settings);
 
 });
+
+ipcMain.on('event:settingsMenu', (event) => {
+
+    menu_conf = {
+        height: 300,
+        width: 300,
+        minHeight: 300,
+        minWidth: 480,
+        show: true,
+        frame: false,
+    }
+
+    settingsWindow = new SettingsMenu(menu_conf, settings);
+    settingsWindow.loadURL(`file://${__dirname}/client/settings.html`);
+
+
+
+});
+
+ipcMain.on('event:exit_without_saving', (event) => {
+    utils.exit_app();
+})
+
 ipcMain.on('done', () => {
 
     if (settings.randomize) {

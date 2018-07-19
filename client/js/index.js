@@ -19,6 +19,7 @@ const currentImg = document.querySelector('#current-img');
 const saveButton = document.querySelector('#save');
 const wpButton = document.querySelector('#wallpaper');
 const exitButton = document.querySelector('#exit');
+const settingsButton = document.querySelector("#settings");
 
 let folderName = "wallpapers";
 const homepath = createPath(os.homedir(), folderName);
@@ -90,6 +91,13 @@ saveButton.addEventListener('click', () => {
 exitButton.addEventListener('click', () => {
     ipcRenderer.send('event:quit');
 })
+
+settingsButton.addEventListener('click', () => {
+
+    ipcRenderer.send('event:settingsMenu');
+
+})
+
 
 async function setAsWallpaper() {
 
