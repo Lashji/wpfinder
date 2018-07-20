@@ -39,7 +39,7 @@ class WindowHandler {
     createSettingsWindow() {
         const menu_conf = {
             height: 300,
-            width: 300,
+            width: 480,
             minHeight: 300,
             minWidth: 480,
             show: true,
