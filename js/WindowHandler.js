@@ -7,8 +7,7 @@ const SettingsMenu = require("./SettingsMenu.js");
 class WindowHandler {
 
 
-    constructor(handler) {
-        this.handler = handler;
+    constructor() {
         this.windows = []
     }
 
@@ -30,10 +29,12 @@ class WindowHandler {
         });
         // mainWindow.setMenu(null)
 
-        mainWindow.once('ready-to-show', () => {
-            this.handler.loadImages(mainWindow);
+        mainWindow.once("ready-to-show", () => {
+            console.log("ready to show - initializing")
+            mainWindow.show()
         })
 
+       return mainWindow
     }
 
     createSettingsWindow() {
@@ -47,13 +48,15 @@ class WindowHandler {
             resizable: false
         }
 
-        const settingsWindow = new SettingsMenu(menu_conf, this.settings);
+        const settingsWindow = new SettingsMenu(menu_conf);
         settingsWindow.loadURL(`file://${__dirname}/../client/settings.html`);
 
         this.windows.push({
             name: "settingswindow",
             window: settingsWindow
         });
+
+        return settingsWindow
     }
 
     getWindow(window) {
