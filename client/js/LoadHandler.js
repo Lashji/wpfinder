@@ -1,5 +1,5 @@
 const electron = require("electron")
-const Loader = require("./Loader.js") 
+const Loader = require("./Loader.js")
 const {
     ipcRenderer
 } = electron
@@ -8,23 +8,25 @@ const {
 class LoadHandler {
 
     constructor(settings, state) {
-        
+
         this.settings = settings
         this.state = state
         this.data = {}
         this.images = []
-        this.loader = new Loader(this.settings)
+        this.loader = new Loader(this.state, this.settings)
     }
 
     start() {
 
         ipcRenderer.send("event:images_exist")
-        ipcRenderer.on("event:images_exist", (res, images) => {
 
-            if (images.length === 0) {
-              this.doRequest()  
-            } 
-            
+        ipcRenderer.on("event:images_exist", (res, data) => {
+
+            if (data.empty) {
+                console.log("empty")
+                this.doRequest()
+            }
+
         })
 
 
@@ -33,12 +35,13 @@ class LoadHandler {
 
     doRequest() {
 
-        this.data = this.loader.load()
+        this.loader.load()
         this.getImageLinks()
 
     }
 
     getImageLinks() {
+
         Object.keys(this.data).forEach(i => {
             this.images.push(i.link)
         })

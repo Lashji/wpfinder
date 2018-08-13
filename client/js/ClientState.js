@@ -3,7 +3,10 @@ class ClientState {
     constructor(settings) {
         this.settings = settings
         this.state = {
-            maximized: false
+            maximized: false,
+            images: [
+
+            ]
         }
     }
 
@@ -18,6 +21,11 @@ class ClientState {
     getCurrentImg(){
         return "src"
     }
+
+    addImages(images){
+        this.state.images.concat(images)
+    }
+
 }
 
 module.exports = ClientState

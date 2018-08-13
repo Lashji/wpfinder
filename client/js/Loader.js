@@ -6,14 +6,14 @@ const {
 
 class Loader {
 
-    constructor(settings) {
+    constructor(state, settings) {
+        this.state = state
         this.settings = settings
     }
 
 
     load() {
-
-        settings.albums.forEach((i) => {
+        this.settings.albums.forEach((i) => {
             this.handleRequest(i)
         })        
 
@@ -37,7 +37,10 @@ class Loader {
                 console.log(resBody)
             }
 
-            ipcRenderer.send("event:load_push", this.parseResponse(resBody))
+            let images = this.parseResponse(resBody)
+
+            this.state.addImages(images)
+            ipcRenderer.send("event:load_push", this.parseResponse(images))
         })
 
 

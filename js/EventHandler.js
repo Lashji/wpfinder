@@ -61,6 +61,7 @@ class EventHandler {
 
 
         ipcMain.on('event:load_push', (event, data) => {
+            console.log("load push")
             this.state.addImages(data)
         })
 
@@ -69,6 +70,7 @@ class EventHandler {
         })
 
         ipcMain.on("event:images_exist", (event) => {
+            console.log("event:images_exist");
             let data = {}
             if (this.state.getImages.length > 0) {
 
@@ -78,7 +80,7 @@ class EventHandler {
             } else {
                 data.empty = true                
             }
-            
+            console.log("sending data back.... \n", data)
             this.mainWindow.webContents.send("event:images_exist", data)
         })
         

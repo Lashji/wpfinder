@@ -14,6 +14,7 @@ class Buttons {
         this.exitButton = document.querySelector('#exit');
         this.settingsButton = document.querySelector("#settings");
         this.utils = utils
+        this.init()
     }
 
     init() {
