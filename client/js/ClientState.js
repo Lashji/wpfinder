@@ -15,6 +15,9 @@ class ClientState {
         return this.state.maximized
     }
 
+    getCurrentImg(){
+        return "src"
+    }
 }
 
 module.exports = ClientState

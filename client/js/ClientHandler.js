@@ -6,9 +6,9 @@ const Settings = require("./Settings.js")
 const Buttons = require("./Buttons.js")
 
 class ClientHandler {
-
     constructor() {
-        this.settings = new Settings(__dirname + "/config.json")
+
+        this.settings = new Settings(__dirname + "/../../config.json")
         this.clientState = new ClientState(this.settings)
         this.utils = new ClientUtils()
         this.buttons = new Buttons(this.utils, this.settings)
@@ -17,7 +17,7 @@ class ClientHandler {
     }
 
     init(){
-        utils.log("ClientHandler starting...")
+        this.utils.log("ClientHandler starting...")
         this.loadHandler.start()
     }
 

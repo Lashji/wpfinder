@@ -16,7 +16,6 @@ class EventHandler {
         this.windowhandler = windowhandler
         this.settingsWindow = undefined
         this.state = new State()
-        this.init()
     }
 
     init() {
@@ -30,6 +29,8 @@ class EventHandler {
         })
 
         ipcMain.on('event:maximize', (event) => {
+            console.log(this.mainWindow);
+
             this.mainWindow.maximize();
         })
 
@@ -68,7 +69,6 @@ class EventHandler {
         })
 
         ipcMain.on("event:images_exist", (event) => {
-
             let data = {}
             if (this.state.getImages.length > 0) {
 

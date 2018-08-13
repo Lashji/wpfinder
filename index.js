@@ -15,5 +15,5 @@ const windowhandler = new WindowHandler()
 app.on('ready', () => {
     const mainWindow = windowhandler.createMainWindow();
     const events = new EventHandler(mainWindow, utils, mainWindow);
-    
+    events.init()
 });

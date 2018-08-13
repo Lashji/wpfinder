@@ -14,7 +14,7 @@ class ClientUtils {
 
     constructor(){
         this.folderName = "wallpapers"
-        this.homepath = this.createPath(os.homedir(), folderName);
+        this.homepath = this.createPath(os.homedir(), this.folderName);
     }
 
     async setAsWallpaper() {
@@ -61,7 +61,7 @@ class ClientUtils {
 
     createFolder() {
 
-        await mkdirp(this.homepath);
+    mkdirp(this.homepath);
 
     }
 

@@ -12,7 +12,7 @@ class WindowHandler {
     }
 
 
-    async createMainWindow() {
+    createMainWindow() {
 
         let mainWindow = new BrowserWindow({
             height: 788,
@@ -31,6 +31,8 @@ class WindowHandler {
 
         mainWindow.once("ready-to-show", () => {
             console.log("ready to show - initializing")
+                mainWindow.webContents.send("event:init")
+            console.log("init send");
             mainWindow.show()
         })
 

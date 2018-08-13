@@ -1,6 +1,5 @@
-import request from 'request';
 const electron = require("electron")
-
+const Loader = require("./Loader.js") 
 const {
     ipcRenderer
 } = electron

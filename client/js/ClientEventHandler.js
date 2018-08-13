@@ -25,6 +25,10 @@ class ClientEventHandler {
             utils.draw(img);
         });
 
+
+        ipcRenderer.on("event:init", () => {
+            this.handler.init();
+        })
     
         ipcRenderer.on('event:save', (image) => {
 
