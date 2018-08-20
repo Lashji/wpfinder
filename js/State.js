@@ -1,7 +1,9 @@
+const electron = require("electron")
 
 
 class State {
-    constructor(){
+    constructor(mainWindow){
+        this.mainWindow = mainWindow
         this.state = {
             images: []
         }
@@ -17,7 +19,7 @@ class State {
 
     }
 
-    
+        
 
 }
 

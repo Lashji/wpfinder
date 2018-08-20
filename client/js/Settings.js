@@ -20,6 +20,10 @@ class Settings {
         
     }
 
+    getIsFiltered(){
+        return this.filter
+    }
+
 }
 
 

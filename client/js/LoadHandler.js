@@ -36,18 +36,8 @@ class LoadHandler {
     doRequest() {
 
         this.loader.load()
-        this.getImageLinks()
 
     }
-
-    getImageLinks() {
-
-        Object.keys(this.data).forEach(i => {
-            this.images.push(i.link)
-        })
-    }
-
-
 
 }
 

@@ -1,7 +1,10 @@
+const ImageHandler = require("./ImageHandler.js")
+
 class ClientState {
 
     constructor(settings) {
         this.settings = settings
+        this.imagehandler = new ImageHandler(settings)
         this.state = {
             maximized: false,
             images: [
@@ -26,6 +29,10 @@ class ClientState {
         this.state.images.concat(images)
     }
 
+
+    update() {
+        this.imagehandler.update()
+    }
 }
 
 module.exports = ClientState

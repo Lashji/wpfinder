@@ -16,7 +16,7 @@ class Loader {
         this.settings.albums.forEach((i) => {
             this.handleRequest(i)
         })        
-
+        ipcRenderer.send("event:load_done")
     }
 
     handleRequest(link) {

@@ -18,11 +18,11 @@ class ClientEventHandler {
 
         ipcRenderer.on('set:next-image', (event) => {
             // let image = this.
-            utils.draw(img);
+            this.utils.draw(img);
         });
 
         ipcRenderer.on('set:last-image', (event) => {
-            utils.draw(img);
+            this.utils.draw(img);
         });
 
 
@@ -35,6 +35,10 @@ class ClientEventHandler {
             console.log('download Done');
 
         });
+
+        ipcRenderer.on("event:images_back_to_client", (images) => {
+            this.state.update(images)
+        })
 
         this.currentImg.addEventListener('dblclick', () => {
 
