@@ -8,19 +8,21 @@ const {
 
 class Imagehandler {
 
-    constructor(settings) {
+    constructor(settings, state, images) {
         this.settings = settings
-        this.images = []
+        this.state = state
+        this.images = images
         this.index = 0;
         this.currentImg = undefined
     }
 
     update(images){
+        console.log("update image handler")
         this.images = images
-
+        
         // dev mode -- remove true after done
         if (this.settings.getIsFiltered() || true){
-            // this.shuffle(this.images)
+            this.state.shuffle()
             this.currentImg = this.images[0]
             this.index = 0
             this.setImg()
@@ -29,10 +31,13 @@ class Imagehandler {
     }
 
     setImg(){
-        cimg = document.querySelector("#current-img")
+        console.log(this.images)
+        let cimg = document.querySelector("#current-img")
+        console.log(cimg)
         cimg.src = this.currentImg
     }
 
+   
 
 }
 

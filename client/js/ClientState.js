@@ -4,12 +4,13 @@ class ClientState {
 
     constructor(settings) {
         this.settings = settings
-        this.imagehandler = new ImageHandler(settings)
+        this.imagehandler = undefined
         this.state = {
             maximized: false,
             images: [
 
-            ]
+            ],
+            index: 0
         }
     }
 
@@ -30,9 +31,25 @@ class ClientState {
     }
 
 
-    update() {
-        this.imagehandler.update()
+    update(images) {
+        if (this.imagehandler === undefined){
+            this.imagehandler = new ImageHandler(this.settings, this, images)
+        } 
+            this.imagehandler.update(images)
     }
+
+    getCurrentImg(){
+
+    }
+
+    setNext(){
+
+    }
+
+    setLast(){
+
+    }
+
 }
 
 module.exports = ClientState

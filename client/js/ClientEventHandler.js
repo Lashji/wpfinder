@@ -36,7 +36,7 @@ class ClientEventHandler {
 
         });
 
-        ipcRenderer.on("event:images_back_to_client", (images) => {
+        ipcRenderer.on("event:images_back_to_client", (event, images) => {
             this.state.update(images)
         })
 
