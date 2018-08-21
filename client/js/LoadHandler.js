@@ -23,8 +23,9 @@ class LoadHandler {
         ipcRenderer.on("event:images_exist", (res, data) => {
 
             if (data.empty) {
-                console.log("empty")
-                this.doRequest()
+                this.loader.load()
+            } else {
+                ipcRenderer.send("event:load_images")
             }
 
         })
@@ -33,11 +34,6 @@ class LoadHandler {
 
     }
 
-    doRequest() {
-
-        this.loader.load()
-
-    }
 
 }
 

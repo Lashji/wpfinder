@@ -8,36 +8,51 @@ const {
 
 class Imagehandler {
 
-    constructor(settings, state, images) {
+    constructor(settings, state) {
         this.settings = settings
         this.state = state
-        this.images = images
+        this.images = []
         this.index = 0;
-        this.currentImg = undefined
     }
 
-    update(images){
-        console.log("update image handler")
+    loadDone(){
+        if(this.settings.getIsRandomized()){
+            this.shuffle()
+        }
+        console.log(this.state.getCurrentImg())
+        this.state.getCurrentImg().src = this.images[0]
+    }
+
+    addImages(images){
+        console.log("adding images ", images)
         this.images = images
-        
-        // dev mode -- remove true after done
-        if (this.settings.getIsFiltered() || true){
-            this.state.shuffle()
-            this.currentImg = this.images[0]
-            this.index = 0
-            this.setImg()
-        } 
- 
+
+        ipcRenderer.send("event:load_done")
     }
 
-    setImg(){
-        console.log(this.images)
-        let cimg = document.querySelector("#current-img")
-        console.log(cimg)
-        cimg.src = this.currentImg
+    update(current_image, direction){
+        switch(direction){
+            case "next":
+                current_image.src = this.getNextImg()
+            break
+            case "last":
+                current_image.src = this.getLastImg()
+            break
+        }
     }
 
-   
+
+    getNextImg(){
+
+    }
+
+    getLastImg(){
+
+    }
+
+    shuffle(){
+
+    }
 
 }
 

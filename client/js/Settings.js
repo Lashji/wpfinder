@@ -24,6 +24,10 @@ class Settings {
         return this.filter
     }
 
+    getIsRandomized(){
+        return this.randomize
+    }
+
 }
 
 

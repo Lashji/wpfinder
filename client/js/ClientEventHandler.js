@@ -40,6 +40,10 @@ class ClientEventHandler {
             this.state.update(images)
         })
 
+        ipcRenderer.on("event:load_done", (event) => {
+            this.state.loadDone()
+        })
+
         this.currentImg.addEventListener('dblclick', () => {
 
             if (!this.state.maximized()) {

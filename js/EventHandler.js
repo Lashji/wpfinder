@@ -67,8 +67,7 @@ class EventHandler {
 
 
         ipcMain.on("event:load_done", (event) => {
-            let imgs = this.state.getImages();
-            this.mainWindow.webContents.send("event:images_back_to_client", imgs)
+            this.mainWindow.webContents.send("event:load_done")
         })
 
         ipcMain.on("event:load_ready", (event) => {
