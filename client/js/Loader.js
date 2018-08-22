@@ -46,7 +46,7 @@ class Loader {
 
                 // console.log("data ", data)
                 // console.log("images ", this.images)
-                ipcRenderer.send("event:load_push", this.parseResponse(data))
+                ipcRenderer.send("event:load_push", data)
 
             }
 
@@ -56,12 +56,34 @@ class Loader {
 
     parseResponse(body) {
         // change this 
+        let newObj = {
+            title: body.data.title,
+            album: body.data.id,
+            images: body.data.images
+        }
+        console.log("body images", newObj.images)
 
-        
+        newObj.images.forEach((i) => {
+            i = i.map((j) => {
+                j = {
+                    link: j.link,
+                    height: j.height,
+                    width: j.width,
+                    id: j,
+                    type: j.type
+                }
+            })
+        })
 
 
-        return body
+
+
+        console.log("body", newObj)
+
+        return newObj
     }
+
+
 }
 
 
