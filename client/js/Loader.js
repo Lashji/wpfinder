@@ -44,8 +44,8 @@ class Loader {
 
                 this.images.push(data)
 
-                console.log("data ", data)
-                console.log("images ", this.images)
+                // console.log("data ", data)
+                // console.log("images ", this.images)
                 ipcRenderer.send("event:load_push", this.parseResponse(data))
 
             }
@@ -56,6 +56,10 @@ class Loader {
 
     parseResponse(body) {
         // change this 
+
+        
+
+
         return body
     }
 }

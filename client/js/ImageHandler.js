@@ -19,15 +19,20 @@ class Imagehandler {
         if(this.settings.getIsRandomized()){
             this.shuffle()
         }
-        console.log(this.state.getCurrentImg())
-        this.state.getCurrentImg().src = this.images[0]
+        console.log("load funtcion",this.images)
+        this.state.getCurrentImg().src = this.images[0].data.images[0].link
     }
 
     addImages(images){
         console.log("adding images ", images)
         this.images = images
 
-        ipcRenderer.send("event:load_done")
+        if (this.images != undefined){
+            console.log("this.images", this.images)
+            ipcRenderer.send("event:load_done")
+        } else {
+            console.log("its undefiden")
+        }
     }
 
     update(current_image, direction){
