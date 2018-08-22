@@ -76,7 +76,7 @@ class EventHandler {
         })
 
         ipcMain.on("event:images_exist", (event) => {
-            console.log("event:images_exist");
+            console.log("event:images_exist");  
             let data = {}
             if (this.state.getImages.length > 0) {
 

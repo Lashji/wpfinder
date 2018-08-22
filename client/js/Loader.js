@@ -13,17 +13,17 @@ class Loader {
     }
 
 
-    load() {
-        this.settings.albums.forEach((i) => {
+    async load() {
+        await this.settings.albums.forEach((i) => {
             this.handleRequest(i)
         })
 
-        console.log("load function ", this.images)
+        console.log("load function pushing ", this.images)
         this.state.addImages(this.parseResponse(this.images))
 
     }
 
-    async handleRequest(link) {
+    handleRequest(link) {
 
         let options = {
             url: link,
@@ -39,21 +39,18 @@ class Loader {
             if (!err && res.statusCode == 200) {
 
                 resBody = JSON.parse(body)
-                console.log(resBody)
+                // console.log(resBody)
                 data = this.parseResponse(resBody)
 
+                this.images.push(data)
 
-                if (this.images.length === 0) {
-                    console.log(this.images)
-                    this.images = new Array(data)
-                } else {
-                    this.images.concat([data])
-                }
+                console.log("data ", data)
+                console.log("images ", this.images)
                 ipcRenderer.send("event:load_push", this.parseResponse(data))
+
             }
 
         })
-
 
     }
 
