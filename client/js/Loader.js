@@ -19,11 +19,11 @@ class Loader {
         })
 
         console.log("load function pushing ", this.images)
-        this.state.addImages(this.parseResponse(this.images))
+        this.state.addImages(this.images)
 
     }
 
-    handleRequest(link) {
+   async handleRequest(link) {
 
         let options = {
             url: link,
@@ -33,7 +33,7 @@ class Loader {
         }
         let data;
 
-        request(options, (err, res, body) => {
+        await request(options, (err, res, body) => {
             let resBody
 
             if (!err && res.statusCode == 200) {
@@ -61,19 +61,19 @@ class Loader {
             album: body.data.id,
             images: body.data.images
         }
-        console.log("body images", newObj.images)
+        // console.log("body images", newObj.images)
 
-        newObj.images.forEach((i) => {
-            i = i.map((j) => {
-                j = {
-                    link: j.link,
-                    height: j.height,
-                    width: j.width,
-                    id: j,
-                    type: j.type
-                }
-            })
-        })
+        // newObj.images.forEach((i) => {
+        //     i = i.map((j) => {
+        //         j = {
+        //             link: j.link,
+        //             height: j.height,
+        //             width: j.width,
+        //             id: j,
+        //             type: j.type
+        //         }
+        //     })
+        // })
 
 
 

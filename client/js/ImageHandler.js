@@ -15,13 +15,15 @@ class Imagehandler {
         this.index = 0;
     }
 
-    loadDone() {
+    async loadDone() {
         if (this.settings.getIsRandomized()) {
             this.shuffle()
         }
         console.log("load funtcion", this.images, "len", this.images.length)
-
-        console.log("this.images data ", this.images[0])
+        let tmp = this.images[0]
+        console.log("tmp", tmp);
+        
+        console.log("this.images data ", this.images)
         // this.state.getCurrentImg().src = this.images[0].data.images[0].link
     }
 
