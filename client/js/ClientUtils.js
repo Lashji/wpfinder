@@ -12,14 +12,16 @@ const mkdirp = require('mkdirp');
 
 class ClientUtils {
 
-    constructor(){
+    constructor(state){
+        this.state = state
         this.folderName = "wallpapers"
         this.homepath = this.createPath(os.homedir(), this.folderName);
+        this.currentImg = this.state.getCurrentImg()
     }
 
     async setAsWallpaper() {
 
-        await save(true);
+        await this.save(true);
 
     }
 
@@ -35,7 +37,7 @@ class ClientUtils {
         const path = this.homepath + slash + name;
 
         const settings = {
-            url: currentImg.src,
+            url: this.currentImg.src,
             fileName: name,
             path: path,
             setWP: setAsWP
@@ -67,7 +69,7 @@ class ClientUtils {
 
 
     createImageName() {
-        const url = currentImg.src;
+        const url = this.currentImg.src;
         const index = url.lastIndexOf('/');
         const name = url.substring(index + 1, url.length);
 
@@ -76,7 +78,7 @@ class ClientUtils {
 
     draw(img) {
 
-        currentImg.src = img.url;
+        this.currentImg.src = img.url;
 
     }
 

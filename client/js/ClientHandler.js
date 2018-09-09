@@ -10,7 +10,7 @@ class ClientHandler {
 
         this.settings = new Settings(__dirname + "/../../config.json")
         this.clientState = new ClientState(this.settings)
-        this.utils = new ClientUtils()
+        this.utils = new ClientUtils(this.clientState)
         this.buttons = new Buttons(this.utils, this.settings)
         this.clientEventHandler = new ClientEventHandler(this, this.clientState, this.utils)
         this.loadHandler = new LoadHandler(this.settings, this.clientState)

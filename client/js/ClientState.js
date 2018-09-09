@@ -35,6 +35,10 @@ class ClientState {
     update(direction) {
         this.imagehandler.update(this.state.currentImage, direction)
     }
+    
+    getCurrentImgSrc(){
+        return this.state.currentImage.src
+    }
 
     loadDone(){
         this.imagehandler.loadDone()

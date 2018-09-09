@@ -32,7 +32,7 @@ class Imagehandler {
     addImages(images) {
         console.log("adding images ", images)
 
-        for (let i = 0; i < images.length; i++){
+        for (let i = 0; i < images.length; i++) {
             this.images.push(images[i])
         }
         console.log(this.images)
@@ -77,7 +77,21 @@ class Imagehandler {
         return this.images[this.index].link
     }
 
-    async shuffle() {
+    shuffle() {
+        let counter = this.images.length;
+        // While there are elements in the array
+        while (counter > 0) {
+            // Pick a random index
+            let index = Math.floor(Math.random() * counter);
+
+            // Decrease counter by 1
+            counter--;
+
+            // And swap the last element with it
+            let temp = this.images[counter];
+            this.images[counter] = this.images[index];
+            this.images[index] = temp;
+        }
 
     }
 
