@@ -1,4 +1,3 @@
-const request = require("request")
 const electron = require("electron")
 const {
     ipcRenderer
@@ -13,74 +12,67 @@ class Loader {
     }
 
 
-    async load() {
-        await this.settings.albums.forEach((i) => {
-            this.handleRequest(i)
-        })
+    load() {
 
-        console.log("load function pushing ", this.images)
-        this.state.addImages(this.images)
+        let len = this.settings.albums.length
+        for (let i = 0; i < len; i++) {
+            if (i === len - 1) {
+                this.handleRequest(this.settings.albums[i], true)
+            } else {
+                this.handleRequest(this.settings.albums[i], false)
+            }
+        }
+
+
+        // this.settings.albums.forEach((i) => {
+        //     this.handleRequest(i)
+        // })
 
     }
 
-   async handleRequest(link) {
-
-        let options = {
-            url: link,
+    handleRequest(link, finalRequest) {
+        fetch(link, {
+            method: "GET",
+            mode: 'cors',
             headers: {
                 'Authorization': "Client-ID 4abb3979dc91311"
+            },
+        }).then((response) => {
+            let data = response.json()
+
+            return data
+        }, (error) => {
+            console.log(error.message)
+        }).then((data) => {
+            console.log(data)
+            data = this.parseResponse(data)
+            ipcRenderer.send('event:load_push', data)
+            
+        }).then(() => {
+            if (finalRequest) {
+                ipcRenderer.send("event:load_done")
             }
-        }
-        let data;
-
-        await request(options, (err, res, body) => {
-            let resBody
-
-            if (!err && res.statusCode == 200) {
-
-                resBody = JSON.parse(body)
-                // console.log(resBody)
-                data = this.parseResponse(resBody)
-
-                this.images.push(data)
-
-                // console.log("data ", data)
-                // console.log("images ", this.images)
-                ipcRenderer.send("event:load_push", data)
-
-            }
-
         })
+
 
     }
 
     parseResponse(body) {
+        console.log("parseresponse: body ", body)
         // change this 
-        let newObj = {
-            title: body.data.title,
-            album: body.data.id,
-            images: body.data.images
-        }
-        // console.log("body images", newObj.images)
 
-        // newObj.images.forEach((i) => {
-        //     i = i.map((j) => {
-        //         j = {
-        //             link: j.link,
-        //             height: j.height,
-        //             width: j.width,
-        //             id: j,
-        //             type: j.type
-        //         }
-        //     })
-        // })
+        // let newObj = {
+        //     title: data.title,
+        //     album: data.id,
+        //     images: data.images
+        // }
 
 
 
 
-        console.log("body", newObj)
+        // console.log("parse Response body", newObj)
 
-        return newObj
+        return body
     }
 
 

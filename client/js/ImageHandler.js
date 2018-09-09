@@ -15,27 +15,23 @@ class Imagehandler {
         this.index = 0;
     }
 
-    async loadDone() {
+    loadDone() {
+
         if (this.settings.getIsRandomized()) {
             this.shuffle()
         }
-        console.log("load funtcion", this.images, "len", this.images.length)
-        let tmp = this.images[0]
-        console.log("tmp", tmp);
-        
-        console.log("this.images data ", this.images)
-        // this.state.getCurrentImg().src = this.images[0].data.images[0].link
+        console.log("load_done function", this.images, this.images[0].data)
+
+        this.state.getCurrentImg().src = this.images[0].data.images[0].link
+        console.log(this.state.getCurrentImg())
+        ipcRenderer.send('event:client_ready')
     }
 
-    async addImages(images) {
-        console.log("adding images ", images)
-        await this.images.push(images)
 
-        if (this.images != undefined) {
-            ipcRenderer.send("event:load_done")
-        } else {
-            console.log("its undefined")
-        }
+
+    addImages(images) {
+        console.log("adding images ", images)
+        this.images.push(images)
     }
 
     update(current_image, direction) {
@@ -58,7 +54,7 @@ class Imagehandler {
 
     }
 
-    shuffle() {
+    async shuffle() {
 
     }
 

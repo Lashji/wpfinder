@@ -33,7 +33,7 @@ class WindowHandler {
             console.log("ready to show - initializing")
                 mainWindow.webContents.send("event:init")
             console.log("init send");
-            mainWindow.show()
+            // mainWindow.show()
         })
 
        return mainWindow

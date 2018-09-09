@@ -61,17 +61,22 @@ class EventHandler {
 
 
         ipcMain.on('event:load_push', (event, data) => {
-            console.log("load push")
+            console.log("load push, adding images ")
             this.state.addImages(data)
+            this.mainWindow.webContents.send("event:load_push", data)
+
         })
 
 
         ipcMain.on("event:load_done", (event) => {
+            const data = this.state.getImages()
+            console.log("LOAD DONE STARTING CLIENT...")
             this.mainWindow.webContents.send("event:load_done")
         })
 
-        ipcMain.on("event:load_ready", (event) => {
-            // CHANGE THIS TO CLIENT READY
+        ipcMain.on("event:client_ready", (event) => {
+
+            console.log("CLIENT READY.... SHOWING CLIENT")
             this.mainWindow.show()
         })
 

@@ -33,8 +33,8 @@ class ClientState {
         this.imagehandler.update(images)
     }
 
-    loadDone(){
-        this.imagehandler.loadDone()
+    loadDone(data){
+        this.imagehandler.loadDone(data)
     }
 }
 

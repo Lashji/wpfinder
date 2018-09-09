@@ -40,9 +40,14 @@ class ClientEventHandler {
             this.state.update(images)
         })
 
-        ipcRenderer.on("event:load_done", (event) => {
-            this.state.loadDone()
+        ipcRenderer.on("event:load_done", (event, data) => {
+            this.state.loadDone(data)
         })
+        
+        ipcRenderer.on("event:load_push", (event, data) => {
+            this.state.addImages(data)
+        })
+
 
         this.currentImg.addEventListener('dblclick', () => {
 
