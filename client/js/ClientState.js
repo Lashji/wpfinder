@@ -23,18 +23,21 @@ class ClientState {
     getCurrentImg(){
         return this.state.currentImage
     }
+    setCurrentImg(img){
+        this.state.currentImage = img
+    }
 
     addImages(images){
         this.imagehandler.addImages(images)
     }
 
 
-    update(images) {
-        this.imagehandler.update(images)
+    update(direction) {
+        this.imagehandler.update(this.state.currentImage, direction)
     }
 
-    loadDone(data){
-        this.imagehandler.loadDone(data)
+    loadDone(){
+        this.imagehandler.loadDone()
     }
 }
 

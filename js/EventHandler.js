@@ -69,7 +69,6 @@ class EventHandler {
 
 
         ipcMain.on("event:load_done", (event) => {
-            const data = this.state.getImages()
             console.log("LOAD DONE STARTING CLIENT...")
             this.mainWindow.webContents.send("event:load_done")
         })

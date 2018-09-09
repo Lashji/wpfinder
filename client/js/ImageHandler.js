@@ -20,9 +20,9 @@ class Imagehandler {
         if (this.settings.getIsRandomized()) {
             this.shuffle()
         }
-        console.log("load_done function", this.images, this.images[0].data)
+        console.log("load_done function", this.images)
 
-        this.state.getCurrentImg().src = this.images[0].data.images[0].link
+        this.state.getCurrentImg().src = this.images[0].link
         console.log(this.state.getCurrentImg())
         ipcRenderer.send('event:client_ready')
     }
@@ -31,7 +31,11 @@ class Imagehandler {
 
     addImages(images) {
         console.log("adding images ", images)
-        this.images.push(images)
+
+        for (let i = 0; i < images.length; i++){
+            this.images.push(images[i])
+        }
+        console.log(this.images)
     }
 
     update(current_image, direction) {
@@ -47,11 +51,30 @@ class Imagehandler {
 
 
     getNextImg() {
+        let image;
 
+        if (this.index === 0 && this.firstImage === true) {
+            this.firstImage = false;
+            return this.images[0];
+
+        } else {
+
+            if (this.index + 1 <= Object.keys(this.images).length) {
+
+                this.index++;
+                return this.images[this.index].link
+            }
+
+        }
     }
 
     getLastImg() {
+        if (this.index > 0 && this.index - 1 >= 0) {
+            this.index--;
+        }
 
+
+        return this.images[this.index].link
     }
 
     async shuffle() {

@@ -18,11 +18,11 @@ class ClientEventHandler {
 
         ipcRenderer.on('set:next-image', (event) => {
             // let image = this.
-            this.utils.draw(img);
+            this.state.update('next')
         });
 
         ipcRenderer.on('set:last-image', (event) => {
-            this.utils.draw(img);
+            this.state.update('last')
         });
 
 

@@ -47,7 +47,7 @@ class Loader {
             console.log(data)
             data = this.parseResponse(data)
             ipcRenderer.send('event:load_push', data)
-            
+
         }).then(() => {
             if (finalRequest) {
                 ipcRenderer.send("event:load_done")
@@ -59,20 +59,23 @@ class Loader {
 
     parseResponse(body) {
         console.log("parseresponse: body ", body)
-        // change this 
 
-        // let newObj = {
-        //     title: data.title,
-        //     album: data.id,
-        //     images: data.images
-        // }
+        let newObj = body.data.images.map((i) => {
+            return {
+                album: body.data.id,
+                album_title: body.data.title,
+                id: i.id,
+                height: i.height,
+                width: i.width,
+                nsfw: i.nsfw,
+                link: i.link,
+                type: i.type
+            }
+        })
 
+        console.log("parse Response body new obj", newObj)
 
-
-
-        // console.log("parse Response body", newObj)
-
-        return body
+        return newObj
     }
 
 
