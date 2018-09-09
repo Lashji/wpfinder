@@ -15,9 +15,9 @@ class Utils {
         app.quit();
     }
 
-    download(settings) {
+    async download(settings) {
 
-        const response = request.get(settings.url)
+        const response = await request.get(settings.url)
             .on('error', (err) => {
                 console.log(err)
             })
@@ -32,7 +32,7 @@ class Utils {
     }
 
 
-    setWallpaper(path) {
+    async setWallpaper(path) {
 
         wallpaper.set(path).then(() => {
             console.log("wallpaper set");
