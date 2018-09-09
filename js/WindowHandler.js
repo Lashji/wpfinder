@@ -52,7 +52,7 @@ class WindowHandler {
 
         const settingsWindow = new SettingsMenu(menu_conf);
         settingsWindow.loadURL(`file://${__dirname}/../client/settings.html`);
-
+        console.log(settingsWindow)
         this.windows.push({
             name: "settingswindow",
             window: settingsWindow

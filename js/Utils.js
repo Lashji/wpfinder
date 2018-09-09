@@ -15,9 +15,9 @@ class Utils {
         app.quit();
     }
 
-    async download(settings) {
+    download(settings) {
 
-        const response = await request.get(settings.url)
+        const response = request.get(settings.url)
             .on('error', (err) => {
                 console.log(err)
             })
