@@ -1,7 +1,11 @@
 {
     "randomize": true,
     "save_path": "path",
-    "filter": true,
+    "filter": {
+        "isFiltered": true,
+        "width":"1920",
+        "height":"1080"
+    },
     "extensions" : [
         ".jpg"
     ],

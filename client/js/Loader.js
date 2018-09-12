@@ -73,6 +73,15 @@ class Loader {
             }
         })
 
+        
+        if (this.settings.filter.isFiltered){
+
+            newObj = newObj.filter((i) => {
+                return i.height.toString() === this.settings.filter.height && i.width.toString() === this.settings.filter.width
+            })
+            
+        }
+        console.log(this.settings.filter)
         console.log("parse Response body new obj", newObj)
 
         return newObj

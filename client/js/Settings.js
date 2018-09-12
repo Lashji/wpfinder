@@ -21,7 +21,7 @@ class Settings {
     }
 
     getIsFiltered(){
-        return this.filter
+        return this.filter.isFiltered
     }
 
     getIsRandomized(){
