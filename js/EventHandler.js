@@ -12,7 +12,7 @@ const {
 class EventHandler {
     constructor(mainWindow, utils, windowhandler) {
         this.mainWindow = mainWindow
-        this.utils = utils 
+        this.utils = utils
         this.windowhandler = windowhandler
         this.settingsWindow = undefined
         this.state = new State()
@@ -76,11 +76,11 @@ class EventHandler {
         ipcMain.on("event:client_ready", (event) => {
 
             console.log("CLIENT READY.... SHOWING CLIENT")
-            this.mainWindow.show()
+            // this.mainWindow.show()
         })
 
         ipcMain.on("event:images_exist", (event) => {
-            console.log("event:images_exist");  
+            console.log("event:images_exist");
             let data = {}
             if (this.state.getImages.length > 0) {
 
@@ -88,12 +88,12 @@ class EventHandler {
                 data.images = this.state.getImages()
 
             } else {
-                data.empty = true                
+                data.empty = true
             }
             console.log("sending data back.... \n", data)
             this.mainWindow.webContents.send("event:images_exist", data)
         })
-        
+
         ipcMain.on("event:log", (event, log) => {
             console.log(log)
         })

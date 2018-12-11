@@ -25,6 +25,7 @@ class Imagehandler {
         this.state.getCurrentImg().src = this.images[0].link
         console.log(this.state.getCurrentImg())
         ipcRenderer.send('event:client_ready')
+
     }
 
 

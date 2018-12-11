@@ -29,7 +29,7 @@ class ClientEventHandler {
         ipcRenderer.on("event:init", () => {
             this.handler.init();
         })
-    
+
         ipcRenderer.on('event:save', (image) => {
 
             console.log('download Done');
@@ -42,8 +42,9 @@ class ClientEventHandler {
 
         ipcRenderer.on("event:load_done", (event, data) => {
             this.state.loadDone(data)
+            this.utils.deleteOverlay()
         })
-        
+
         ipcRenderer.on("event:load_push", (event, data) => {
             this.state.addImages(data)
         })

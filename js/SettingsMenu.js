@@ -7,10 +7,7 @@ class SettingsMenu extends BrowserWindow {
 
     constructor(settings_conf, settings) {
         super(settings_conf)
-
     }
-
-
 }
 
 

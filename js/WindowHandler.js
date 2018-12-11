@@ -1,5 +1,5 @@
 const electron = require('electron')
-const { 
+const {
     BrowserWindow
 } = electron;
 const SettingsMenu = require("./SettingsMenu.js");
@@ -31,12 +31,12 @@ class WindowHandler {
 
         mainWindow.once("ready-to-show", () => {
             console.log("ready to show - initializing")
-                mainWindow.webContents.send("event:init")
+            mainWindow.webContents.send("event:init")
             console.log("init send");
-            // mainWindow.show()
+            mainWindow.show()
         })
 
-       return mainWindow
+        return mainWindow
     }
 
     createSettingsWindow() {

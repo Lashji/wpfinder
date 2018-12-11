@@ -12,7 +12,7 @@ const mkdirp = require('mkdirp');
 
 class ClientUtils {
 
-    constructor(state){
+    constructor(state) {
         this.state = state
         this.folderName = "wallpapers"
         this.homepath = this.createPath(os.homedir(), this.folderName);
@@ -63,7 +63,7 @@ class ClientUtils {
 
     createFolder() {
 
-    mkdirp(this.homepath);
+        mkdirp(this.homepath);
 
     }
 
@@ -82,10 +82,30 @@ class ClientUtils {
 
     }
 
-    log(log){
+    log(log) {
         ipcRenderer.send("event:log", log)
     }
 
+    deleteOverlay() {
+        const overlay = document.querySelector("#overlay")
+        let overlayExist = true
+        let opacity = 1
+
+        // Trying to get some fading. Will work on this later
+        while (overlayExist) {
+
+            setInterval(() => {
+                overlay.style.opacity = opacity
+            }, 5000)
+            opacity -= 0.001
+
+            if (opacity <= 0) {
+                overlayExist = false
+                overlay.parentElement.removeChild(overlay)
+            }
+        }
+        console.log("Overlay deleted")
+    }
 }
 
 

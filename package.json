@@ -8,6 +8,7 @@
     "electron": "^2.0.3",
     "electron-rebuild": "^1.7.3",
     "fetch": "^1.1.0",
+    "npm": "^6.4.1",
     "request": "^2.87.0",
     "wallpaper": "^3.0.0"
   },
