@@ -10,11 +10,11 @@ const {
 
 
 class EventHandler {
-    constructor(mainWindow, utils, windowhandler) {
+    constructor(mainWindow, settingsWindow, utils, windowhandler) {
         this.mainWindow = mainWindow
         this.utils = utils
         this.windowhandler = windowhandler
-        this.settingsWindow = undefined
+        this.settingsWindow = settingsWindow
         this.state = new State()
     }
 
@@ -51,11 +51,12 @@ class EventHandler {
         })
 
         ipcMain.on('event:settingsMenu', (event) => {
-            this.settingsWindow = this.windowhandler.createSettingsWindow();
+            console.log(this)
+            this.settingsWindow = this.settingsWindow.show()
         })
 
         ipcMain.on('event:exit_without_saving', (event) => {
-            const windows = this.windowhandler.getWindows();
+            const windows = this.windowhandler.getWindows()
             this.utils.exit_app(app, windows);
         })
 

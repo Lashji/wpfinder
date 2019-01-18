@@ -13,7 +13,7 @@ class WindowHandler {
 
 
     createMainWindow() {
-
+        console.log("creating main window")
         let mainWindow = new BrowserWindow({
             height: 788,
             width: 1400,
@@ -40,12 +40,13 @@ class WindowHandler {
     }
 
     createSettingsWindow() {
+        console.log("creating settings window")
         const menu_conf = {
             height: 300,
             width: 480,
             minHeight: 300,
             minWidth: 480,
-            show: true,
+            show: false,
             frame: false,
             resizable: false
         }
