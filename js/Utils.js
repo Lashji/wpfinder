@@ -4,7 +4,9 @@ const wallpaper = require("wallpaper");
 
 class Utils {
 
-    constructor() {}
+    constructor(app) {
+        this.app = app
+    }
 
     exit_app(app, windows) {
         windows.forEach(w => {
@@ -38,6 +40,23 @@ class Utils {
             console.log("wallpaper set");
         });
 
+    }
+
+    saveSettings(newSettings, path) {
+
+        fs.writeFileSync(path, newSettings, (err) => {
+            if (err) {
+                return console.log(err)
+            }
+
+            console.log("File saved from be utils | path: ", path)
+        })
+
+    }
+
+    restartApp() {
+        this.app.relaunch()
+        this.app.exit()
     }
 
 }

@@ -1,0 +1,17 @@
+{
+    "randomize": true,
+    "save_path": "path",
+    "filter": {
+        "isFiltered": true,
+        "width":"1920",
+        "height":"1080"
+    },
+    "extensions" : [
+        ".jpg"
+    ],
+    "albums": [
+        "https://api.imgur.com/3/album/rMPdm",
+        "https://api.imgur.com/3/album/abaz1",
+        "https://api.imgur.com/3/album/fMpQTh8"
+    ]
+}

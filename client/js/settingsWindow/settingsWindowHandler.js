@@ -62,9 +62,7 @@ class settingsWindowHandler {
         });
 
         this.apply_button.addEventListener('click', () => {
-
-            ipcRenderer.send("event:exit_and_save");
-
+            this.settings.writeConfig()
         });
     }
 }

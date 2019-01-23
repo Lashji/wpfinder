@@ -19,6 +19,7 @@ class EventHandler {
     }
 
     init() {
+        let settingswindow = this.settingsWindow
 
         ipcMain.on('next-image', (event) => {
             this.mainWindow.webContents.send("set:next-image");
@@ -51,15 +52,22 @@ class EventHandler {
         })
 
         ipcMain.on('event:settingsMenu', (event) => {
-            console.log(this)
             this.settingsWindow = this.settingsWindow.show()
         })
 
         ipcMain.on('event:exit_without_saving', (event) => {
-            const windows = this.windowhandler.getWindows()
-            this.utils.exit_app(app, windows);
+
+            settingswindow.close()
+
         })
 
+        ipcMain.on('event:exit_and_save', (event, newSettings, path) => {
+            console.log("new settings = ", newSettings, " path ", path)
+
+            this.utils.saveSettings(newSettings, path);
+            settingswindow.close()
+            this.utils.restartApp()
+        })
 
         ipcMain.on('event:load_push', (event, data) => {
             console.log("load push, adding images ")

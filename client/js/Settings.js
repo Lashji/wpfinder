@@ -3,12 +3,13 @@ const path = require('path');
 
 class Settings {
 
-    constructor(config) {
-        const data = this.readConfig(config);
-        this.randomize = data.randomize;
-        this.filter = data.filter;
-        this.savePath = data.save_path;
-        this.albums = data.albums;
+    constructor(path) {
+        this.data = this.readConfig(path);
+        this.path = path;
+        this.randomize = this.data.randomize;
+        this.filter = this.data.filter;
+        this.savePath = this.data.save_path;
+        this.albums = this.data.albums;
     }
 
 
@@ -16,8 +17,10 @@ class Settings {
         return JSON.parse(fs.readFileSync(config, 'utf8'));
     }
 
-    writeConfig(config) {
-
+    writeConfig() {
+        let data = JSON.stringify(this.data)
+        console.log("Saving data and sending it back to ipcMain ", +this.settings)
+        ipcRenderer.send("event:exit_and_save", data, this.path);
     }
 
     getIsFiltered() {

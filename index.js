@@ -7,7 +7,7 @@ const {
     app
 } = electron;
 
-const utils = new Utils();
+const utils = new Utils(app);
 
 const windowhandler = new WindowHandler()
 

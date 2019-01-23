@@ -1,23 +1,35 @@
+const electron = require("electron")
+const {
+    ipcRenderer
+} = electron
+
+
 class TemplateRenderer {
 
     constructor(hook, settings) {
 
         this.hook = hook
         this.settings = settings
-
     }
 
     renderTemplate(template) {
+
         switch (template) {
             case "list":
                 this.renderList();
                 break;
 
         }
+
+
+        this.applyEventListeners(template)
+
     }
 
-    renderList() {
+    renderList(template) {
+
         this.clearHook()
+
         let maindiv = document.createElement("div")
         maindiv.setAttribute("class", "maindiv")
         let frag = document.createDocumentFragment()
@@ -25,6 +37,8 @@ class TemplateRenderer {
         let ul = document.createElement("ul")
         ul.setAttribute("class", "settings-list-ul")
         form.setAttribute("class", "settings-form")
+
+
         for (let i = 0; i < this.settings.albums.length; ++i) {
 
             let li = document.createElement("li")
@@ -36,7 +50,6 @@ class TemplateRenderer {
 
 
         form.appendChild(this.getFormItems())
-
         maindiv.appendChild(ul)
         maindiv.appendChild(form)
         frag.appendChild(maindiv)
@@ -50,15 +63,15 @@ class TemplateRenderer {
         let items = document.createElement("div")
         inp.setAttribute("type", "text")
         inp.setAttribute("class", "settings-form-input")
+        inp.setAttribute("id", "link-input")
 
         let button = document.createElement("input")
         button.setAttribute("type", "button")
         button.setAttribute("value", "Add")
-        button.addEventListener('click', () => {
+        button.setAttribute("id", "addbutton")
 
-            this.addListItem("link", this.settings)
-            this.renderTemplate
-        })
+
+
         items.setAttribute("class", "form-items")
 
         items.appendChild(inp)
@@ -81,6 +94,20 @@ class TemplateRenderer {
             this.hook.removeChild(this.hook.childNodes[i])
 
         }
+
+    }
+
+    applyEventListeners(template) {
+        const addButton = document.querySelector("#addbutton");
+        const inputfield = document.querySelector("#link-input");
+        let settings = this.settings
+
+
+        addButton.addEventListener('click', () => {
+
+            this.addListItem(inputfield.value, settings)
+            this.renderTemplate(template)
+        })
 
     }
 

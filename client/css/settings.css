@@ -28,6 +28,8 @@ object {
     grid-template-columns: 12.5% 87.5%;
 }
 
+.maindiv {}
+
 /* .template-container {
     height: 100%;
     width: 100%;
@@ -134,7 +136,7 @@ object {
 
 .settings-list-item {
 
-    margin: 0 5px;
+    margin: 0;
     background-color: #efefef;
     padding: 10px;
 
@@ -145,24 +147,29 @@ object {
 }
 
 .settings-list-ul {
+    border: 1px solid black;
     list-style-type: none;
-    margin-left: 0;
-    padding-left: 0;
-    width: 100%;
+    margin: 10px auto;
+    padding: 0;
+    width: 90%;
+    max-height: 250px;
+    overflow-y: auto;
 }
 
 .form-items {
-    margin: auto;
+    margin: 0 auto;
+    width: 80%;
 }
 
 .settings-form-input {
-    margin-left: 5px;
-    width: 90%;
-
+    width: 85%;
+    margin: 0 auto;
+    display: inline-block;
 }
 
 .settings-form {
     margin: 0 auto;
+
 }
 
 /* DRAGS */
