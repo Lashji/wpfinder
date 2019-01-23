@@ -4,7 +4,7 @@ const path = require('path');
 class Settings {
 
     constructor(config) {
-        let data = this.readConfig(config);
+        const data = this.readConfig(config);
         this.randomize = data.randomize;
         this.filter = data.filter;
         this.savePath = data.save_path;
@@ -17,14 +17,14 @@ class Settings {
     }
 
     writeConfig(config) {
-        
+
     }
 
-    getIsFiltered(){
+    getIsFiltered() {
         return this.filter.isFiltered
     }
 
-    getIsRandomized(){
+    getIsRandomized() {
         return this.randomize
     }
 

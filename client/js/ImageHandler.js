@@ -12,7 +12,7 @@ class Imagehandler {
         this.settings = settings
         this.state = state
         this.images = []
-        this.index = 0;
+        this.index = 0
     }
 
     loadDone() {

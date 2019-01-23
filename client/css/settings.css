@@ -17,11 +17,23 @@ body {
     border-left: 2px solid crimson;
 }
 
+object {
+    height: 100%;
+    width: 100%;
+}
+
 .settings-container {
     height: 100vh;
     display: grid;
     grid-template-columns: 12.5% 87.5%;
 }
+
+/* .template-container {
+    height: 100%;
+    width: 100%;
+    background-color: crimson;
+
+} */
 
 #sidebar {
     display: grid;
@@ -36,7 +48,7 @@ body {
     list-style-type: none;
     padding: 10px;
     color: crimson;
-    transition: background-color .5s ease-out, color .5s ease-out;
+    transition: background-color .2s ease-out, color .2s ease-out;
     /* transition: color 1s ease-out; */
     cursor: pointer;
     border-bottom: 1px solid crimson;
@@ -81,6 +93,11 @@ body {
     cursor: pointer;
 }
 
+.button-span {
+    display: inline-block;
+    margin-top: 5px;
+}
+
 #cancel {
     background-color: #333;
     color: #efefef;
@@ -92,8 +109,9 @@ body {
 }
 
 #apply {
-    background-color: #efefef;
-    color: #333;
+    background-color: crimson;
+    color: #efefef;
+    /* border: 2px solid crimson; */
 }
 
 #apply:hover {
@@ -109,6 +127,42 @@ body {
 .sidebar-icon {
     font-size: 2em;
     z-index: 2;
+    margin-top: 15px;
+}
+
+/* Settings List */
+
+.settings-list-item {
+
+    margin: 0 5px;
+    background-color: #efefef;
+    padding: 10px;
+
+}
+
+.settings-list-item:nth-child(even) {
+    background-color: #fff;
+}
+
+.settings-list-ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    width: 100%;
+}
+
+.form-items {
+    margin: auto;
+}
+
+.settings-form-input {
+    margin-left: 5px;
+    width: 90%;
+
+}
+
+.settings-form {
+    margin: 0 auto;
 }
 
 /* DRAGS */
@@ -118,6 +172,9 @@ body {
 }
 
 .buttons,
-.sidebar-item {
+.sidebar-item,
+.top,
+.settings-form-input,
+.maindiv {
     -webkit-app-region: no-drag;
 }

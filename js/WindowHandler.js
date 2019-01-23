@@ -42,10 +42,10 @@ class WindowHandler {
     createSettingsWindow() {
         console.log("creating settings window")
         const menu_conf = {
-            height: 300,
-            width: 480,
-            minHeight: 300,
-            minWidth: 480,
+            height: 400,
+            width: 600,
+            minHeight: 400,
+            minWidth: 600,
             show: false,
             frame: false,
             resizable: false
